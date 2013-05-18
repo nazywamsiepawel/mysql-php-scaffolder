@@ -1,0 +1,69 @@
+#create
+function create([php_params_vars]){
+        $query="INSERT INTO `[class_name]` ([mysql_params]) 
+                VALUES ([mysql_params_values]);";
+        $result = mysql_query($query);
+
+        if (!$result)
+             die('Invalid query: ' . mysql_error());
+}
+#create-end
+
+#read
+
+function read($id){
+        $query = "SELECT * FROM `id` WHERE `[primary_key]` LIKE '$id'";
+        $result = mysql_query($query);
+        if($result){
+               $data = mysql_fetch_assoc($result);
+               [php_self_assign_vars]
+         }
+}
+#read-end
+
+#update
+
+#update-end
+
+#delete
+
+#delete-end
+
+#gets
+function get[var_name](){
+    return this->$[var_name];
+}
+#gets-end
+
+#sets
+function setUpdate[var_name]($value){
+    $this->[var_name] = $value;
+    $query = "UPDATE `[class_name]` SET `[var_name]` = '$value'
+    WHERE `id` LIKE '$id';";
+    $result = mysql_query($query);
+    if (!$result) {
+         die('Problem updating text values : ' . mysql_error());
+    }
+        
+}
+#sets-end
+
+#get-slaves
+function [name]($limit){
+    $collection = new array();
+    $query = "SELECT DISTINCT `id` FROM  `[y_name]` WHERE  `[foreign_key]` LIKE  '$this->id' LIMIT 0 , $limit";
+    while ($rowInfo = mysql_fetch_assoc($result)){
+            $temp = new [y_name]();
+            $temp ->read($rowInfo["id"]);
+            $collection[] = $tempPost;
+        }
+    return $collection;
+}
+#get-slaves-end
+
+#get-many-slaves
+function [name](){
+    
+}
+#get-many-slaves-end
+
